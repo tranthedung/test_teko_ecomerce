@@ -14,10 +14,7 @@ class BaseRequest {
     Dio dio = Dio();
 
     dio.options = buildDefaultOptions();
-/*
-    if (Diolog().showDebug) {
-      dio.interceptors.add(SDSDioLogInterceptor());
-    }*/
+
     dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
         final client = HttpClient();
@@ -26,13 +23,6 @@ class BaseRequest {
         return client;
       },
     );
-
-/*    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };*/
     return dio;
   }
 
@@ -152,11 +142,4 @@ class BaseRequest {
         e.response.data["errorMessage"] != null) return e.response.data;
     onErrorCallBack(e);
   }
-
-  // Map<String, String> getBaseHeader() {
-  //   return {
-  //     "Content-Type": "application/json",
-  //     'Authorization': hiveApp.get(AppConst.keyToken) ?? "",
-  //   };
-  // }
 }

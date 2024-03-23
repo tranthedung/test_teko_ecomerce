@@ -42,24 +42,4 @@ abstract class BaseGetWidget<T extends BaseGetxController> extends GetView<T> {
   //     ),
   //   );
   // }
-
-  static Widget listEmpty() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // FaIcon(
-        //   FontAwesomeIcons.circleExclamation,
-        //   size: 30,
-        //   color: DefaultTheme.greyText,
-        // ),
-        const Text(
-          AppStr.emptyList,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-  }
 }

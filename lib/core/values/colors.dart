@@ -21,6 +21,7 @@ class AppColors {
   static const Color colorBackgroundLight = Color(0xFFf7f7f7);
   static const Color lightPrimaryColor = Color(0xFF0074bd);
   static const Color colorAttention = Color(0xccEF4444);
+  static const Color colorRedDark = Color(0xFFD32F2F);
 
   static bool _isDarkMode() => false;
 
