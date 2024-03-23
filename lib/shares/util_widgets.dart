@@ -1,5 +1,7 @@
+import 'package:ecomerce/core/values/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class UtilWidget {
   static Widget buildLoading({
@@ -81,4 +83,38 @@ class UtilWidget {
   //     ),
   //   );
   // }
+  static Widget buildSmartRefresher({
+    required RefreshController refreshController,
+    required Widget child,
+    ScrollController? scrollController,
+    Function()? onRefresh,
+    Function()? onLoadMore,
+    bool enablePullUp = false,
+  }) {
+    return SmartRefresher(
+      enablePullDown: true,
+      enablePullUp: enablePullUp,
+      scrollController: scrollController,
+      header: const MaterialClassicHeader(
+        color: AppColors.colorLoading,
+      ),
+      controller: refreshController,
+      onRefresh: onRefresh,
+      onLoading: onLoadMore,
+      footer: buildSmartRefresherCustomFooter(),
+      child: child,
+    );
+  }
+
+  static Widget buildSmartRefresherCustomFooter() {
+    return CustomFooter(
+      builder: (context, mode) {
+        if (mode == LoadStatus.loading) {
+          return const CupertinoActivityIndicator();
+        } else {
+          return const SizedBox();
+        }
+      },
+    );
+  }
 }

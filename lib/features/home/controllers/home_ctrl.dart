@@ -1,3 +1,4 @@
+import 'package:ecomerce/base_utils/base_repository/base_request.dart';
 import 'package:ecomerce/base_utils/controller_base/base_refresh_controller.dart';
 import 'package:ecomerce/features/home/models/products_model.dart';
 import 'package:ecomerce/features/home/repository/home_repository.dart';
@@ -10,6 +11,7 @@ class HomeCtrl extends BaseRefreshGetxController {
 
   @override
   void onInit() async {
+    Get.put(BaseRequest(), permanent: true);
     homeRepository = HomeRepository(this);
     await getProducts();
     super.onInit();
@@ -22,9 +24,8 @@ class HomeCtrl extends BaseRefreshGetxController {
   }
 
   @override
-  Future<void> onRefresh() {
-    // TODO: implement onRefresh
-    throw UnimplementedError();
+  Future<void> onRefresh() async {
+    await getProducts();
   }
 
   Future<void> getProducts() async {

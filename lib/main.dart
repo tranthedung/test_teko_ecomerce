@@ -1,5 +1,5 @@
 import 'package:ecomerce/assets/strings.dart';
-import 'package:ecomerce/core/theme/colors.dart';
+import 'package:ecomerce/core/values/colors.dart';
 import 'package:ecomerce/routes/pages.dart';
 import 'package:ecomerce/routes/routes.dart';
 import 'package:ecomerce/shares/keyboard.dart';
@@ -26,7 +26,7 @@ class _Application extends State<Application> {
       DeviceOrientation.portraitUp,
     ]);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        systemNavigationBarColor: AppColors.color,
+        // systemNavigationBarColor: AppColors.color,
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark));
