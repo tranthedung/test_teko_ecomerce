@@ -271,4 +271,19 @@ class UtilWidget {
       }
     });
   }
+
+  //Vertical sizebox.
+  static const Widget sizedBox3 = SizedBox(height: 3);
+  static const Widget sizedBox5 = SizedBox(height: 5);
+  static const Widget sizedBox7 = SizedBox(height: 7);
+  static const Widget sizedBox10 = SizedBox(height: 10);
+  static const Widget sizedBox15 = SizedBox(height: 15);
+  static const Widget sizedBox20 = SizedBox(height: 20);
+
+  //Horizontal sizebox.
+  static const Widget sizedBoxWidth3 = SizedBox(width: 3);
+  static const Widget sizedBoxWidth5 = SizedBox(width: 5);
+  static const Widget sizedBoxWidth10 = SizedBox(width: 10);
+  static const Widget sizedBoxWidth15 = SizedBox(width: 15);
+  static const Widget sizedBoxWidth25 = SizedBox(width: 25);
 }

@@ -22,8 +22,18 @@ class AppColors {
   static const Color lightPrimaryColor = Color(0xFF0074bd);
   static const Color colorAttention = Color(0xccEF4444);
   static const Color colorRedDark = Color(0xFFD32F2F);
+  static const Color colorDarkPrimary = Color(0xFF3e4161);
+  static const Color colorErrorText = Color(0xFFFFCB12);
+  static const Color colorBlack26 = Color.fromARGB(66, 0, 0, 0);
+  static const Color colorWhite = Color(0xFFFFFFFF);
 
   static bool _isDarkMode() => false;
 
   static Color bottomSheet() => _isDarkMode() ? colorButton : Colors.white;
+  static Color textColor() => _isDarkMode() ? Colors.white : Colors.black;
+  static Color inputText() =>
+      _isDarkMode() ? colorDarkPrimary : colorLightAccent;
+  static Color hintTextColor() =>
+      _isDarkMode() ? Colors.white54 : Colors.black54;
+  static Color errorText() => _isDarkMode() ? colorErrorText : Colors.redAccent;
 }

@@ -23,10 +23,24 @@ Widget _buildBottomSheetEdit(
                         ),
                       ),
                     )
-                  : Image.network(
-                      controller.listProducts[index].image ?? "",
-                      fit: BoxFit.cover,
+                  : SizedBox(
+                      height: AppDimens.imagePicture,
+                      width: AppDimens.imagePicture,
+                      child: Image.network(
+                        controller.listProducts[index].image ?? "",
+                        fit: BoxFit.cover,
+                      ),
                     ),
+              _buildInputField(
+                label: "Name",
+                textEditingController: controller.nameController,
+                textValue: controller.name.value,
+              ),
+              _buildInputField(
+                label: "Sku",
+                textEditingController: controller.skuController,
+                textValue: controller.sku.value,
+              ),
             ],
           ),
         ),
@@ -38,5 +52,48 @@ Widget _buildBottomSheetEdit(
         textColor: AppColors.white,
       ),
     ],
+  );
+}
+
+Widget _buildInputField({
+  required String label,
+  required TextEditingController textEditingController,
+  required String textValue,
+  String? hintText,
+}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      TextUtils(
+        text: label,
+        availableStyle: StyleEnum.titleMedium,
+        color: AppColors.colorBasicGrey,
+      ),
+      UtilWidget.sizedBox5,
+      BuildInputText(
+        InputTextModel(
+          controller: textEditingController,
+          textColor: AppColors.colorBasicBlack,
+          hintText: hintText,
+          hintTextColor: AppColors.colorBasicGrey2,
+          hintTextSize: AppDimens.sizeTextSmall,
+          colorBorder: AppColors.colorBasicGrey2,
+          fillColor: AppColors.colorWhite,
+          onChanged: (value) {
+            textValue = value;
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Vui lòng nhập đầy đủ thông tin";
+            }
+            return null;
+          },
+        ),
+      ),
+      UtilWidget.sizedBox5,
+    ],
+  ).paddingSymmetric(
+    vertical: AppDimens.paddingSmallest,
   );
 }

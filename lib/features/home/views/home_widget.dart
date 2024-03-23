@@ -10,25 +10,6 @@ Widget _buildBody(HomeCtrl controller) {
         backgroundColor: AppColors.lightPrimaryColor,
         textColor: AppColors.white,
       ).paddingAll(AppDimens.paddingVerySmall),
-      // Row(
-      //   children: [
-      //     Expanded(
-      //       child: ElevatedButton(
-      //         onPressed: () {},
-      //         child: Text("Submit"),
-      //         style: ElevatedButton.styleFrom(
-      //           backgroundColor: AppColors.colorsOrange,
-      //           elevation: 0,
-      //           shape: const RoundedRectangleBorder(
-      //             borderRadius: BorderRadius.all(
-      //               Radius.circular(AppDimens.radius8),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
     ],
   );
 }
@@ -36,8 +17,10 @@ Widget _buildBody(HomeCtrl controller) {
 Widget _buildProducts(HomeCtrl controller) {
   return Obx(
     () => controller.listProducts.isEmpty
-        ? const Center(
-            child: Text("Danh sách trống"),
+        ? const Expanded(
+            child: Center(
+              child: Text("Danh sách trống"),
+            ),
           )
         : Expanded(
             child: UtilWidget.buildSmartRefresher(
@@ -80,55 +63,27 @@ Widget _buildProductItem(HomeCtrl controller, int index) {
                     ),
                   ),
                 )
-              : Image.network(
-                  controller.listProducts[index].image ?? "",
-                  fit: BoxFit.cover,
-                ),
+              : _buildImageProduct(controller, index),
         ),
         Expanded(
           flex: 3,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildText(
-                controller.listProducts[index].name,
-              ),
-              _buildText(
-                controller.listProducts[index].errorDescription,
-              ),
-              _buildText(
-                controller.listProducts[index].sku,
-              ),
-              // _buildText(
-              //   controller.listProducts[index].color,
-              // ),
-            ],
-          ).paddingAll(AppDimens.paddingVerySmall),
+          child: _buildInforProduct(controller, index)
+              .paddingAll(AppDimens.paddingVerySmall),
         ),
         Expanded(
           flex: 1,
-          child: IconButton(
-            onPressed: () {
-              Get.bottomSheet(
-                isScrollControlled: true,
-                UtilWidget.baseBottomSheet(
-                  title: "Chỉnh sửa sản phẩm",
-                  body: _buildBottomSheetEdit(controller, index),
-                  backgroundColor: AppColors.colorLightAccent,
-                  noHeader: false,
-                  height: Get.height * 0.8,
-                ),
-              );
-            },
-            icon: const Icon(
-              Icons.edit,
-              color: AppColors.colorAttention,
-            ),
-          ),
+          child: _buildEditProduct(controller, index),
         )
       ],
     ),
   ).paddingAll(AppDimens.paddingSmallest);
+}
+
+Widget _buildImageProduct(HomeCtrl controller, int index) {
+  return Image.network(
+    controller.listProducts[index].image ?? "",
+    fit: BoxFit.cover,
+  );
 }
 
 Widget _buildText(String? content) {
@@ -138,3 +93,44 @@ Widget _buildText(String? content) {
   );
 }
 
+Widget _buildInforProduct(HomeCtrl controller, int index) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      _buildText(
+        controller.listProducts[index].name,
+      ),
+      _buildText(
+        controller.listProducts[index].errorDescription,
+      ),
+      _buildText(
+        controller.listProducts[index].sku,
+      ),
+      // _buildText(
+      //   controller.listProducts[index].color,
+      // ),
+    ],
+  );
+}
+
+Widget _buildEditProduct(HomeCtrl controller, int index) {
+  return IconButton(
+    onPressed: () {
+      controller.getDataProduct(controller.listProducts[index]);
+      Get.bottomSheet(
+        isScrollControlled: true,
+        UtilWidget.baseBottomSheet(
+          title: "Chỉnh sửa sản phẩm",
+          body: _buildBottomSheetEdit(controller, index),
+          backgroundColor: AppColors.colorLightAccent,
+          noHeader: false,
+          height: Get.height,
+        ),
+      );
+    },
+    icon: const Icon(
+      Icons.edit,
+      color: AppColors.colorAttention,
+    ),
+  );
+}
