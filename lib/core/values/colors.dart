@@ -26,6 +26,7 @@ class AppColors {
   static const Color colorErrorText = Color(0xFFFFCB12);
   static const Color colorBlack26 = Color.fromARGB(66, 0, 0, 0);
   static const Color colorWhite = Color(0xFFFFFFFF);
+  static const Color dsPrimaryBlueBlue = Color(0xFF0074BD);
 
   static bool _isDarkMode() => false;
 

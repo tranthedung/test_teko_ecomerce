@@ -6,48 +6,55 @@ Widget _buildBottomSheetEdit(
 ) {
   return Column(
     children: [
-      Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              controller.listProducts[index].image == null ||
-                      controller.listProducts[index].image == ""
-                  ? Container(
-                      color: AppColors.colorBasicGrey3,
-                      child: const Center(
-                        child: Text(
-                          "No Image",
-                          style: TextStyle(
-                            fontSize: AppDimens.sizeTextMediumTb,
+      Obx(
+        () => Expanded(
+          child: SingleChildScrollView(
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  controller.listProducts[index].image == null ||
+                          controller.listProducts[index].image == ""
+                      ? Container(
+                          color: AppColors.colorBasicGrey3,
+                          child: const Center(
+                            child: Text(
+                              "No Image",
+                              style: TextStyle(
+                                fontSize: AppDimens.sizeTextMediumTb,
+                              ),
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          height: AppDimens.imagePicture,
+                          width: AppDimens.imagePicture,
+                          child: Image.network(
+                            controller.listProducts[index].image ?? "",
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    )
-                  : SizedBox(
-                      height: AppDimens.imagePicture,
-                      width: AppDimens.imagePicture,
-                      child: Image.network(
-                        controller.listProducts[index].image ?? "",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-              _buildInputField(
-                label: "Name",
-                textEditingController: controller.nameController,
-                textValue: controller.name.value,
+                  _buildInputField(
+                    label: "Name",
+                    textEditingController: controller.nameController,
+                    textValue: controller.name.value,
+                  ),
+                  _buildInputField(
+                    label: "Sku",
+                    textEditingController: controller.skuController,
+                    textValue: controller.sku.value,
+                  ),
+                ],
               ),
-              _buildInputField(
-                label: "Sku",
-                textEditingController: controller.skuController,
-                textValue: controller.sku.value,
-              ),
-            ],
+            ),
           ),
         ),
       ),
       BaseElevatedButton(
-        "Cập nhật",
-        () {},
+        "Update",
+        () {
+          controller.updateProduct(index);
+        },
         backgroundColor: AppColors.lightPrimaryColor,
         textColor: AppColors.white,
       ),

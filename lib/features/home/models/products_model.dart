@@ -1,19 +1,25 @@
+import 'package:get/get.dart';
+
 class ProductsModel {
   ProductsModel({
-    required this.id,
-    required this.errorDescription,
-    required this.name,
-    required this.sku,
-    required this.image,
-    required this.color,
+    this.id,
+    this.errorDescription,
+    this.name,
+    this.sku,
+    this.image,
+    this.color,
+    this.textColor,
   });
 
-  final int? id;
-  final String? errorDescription;
-  final String? name;
-  final String? sku;
-  final String? image;
-  final dynamic color;
+   int? id;
+   String? errorDescription;
+   String? name;
+   String? sku;
+   String? image;
+   int? color;
+   String? textColor;
+
+  final RxBool isEdited = false.obs;
 
   factory ProductsModel.fromJson(Map<String, dynamic> json) {
     return ProductsModel(

@@ -5,7 +5,7 @@ Widget _buildBody(HomeCtrl controller) {
     children: [
       _buildProducts(controller),
       BaseElevatedButton(
-        "Cập nhật",
+        "Submit",
         () {},
         backgroundColor: AppColors.lightPrimaryColor,
         textColor: AppColors.white,
@@ -42,9 +42,13 @@ Widget _buildProducts(HomeCtrl controller) {
 Widget _buildProductItem(HomeCtrl controller, int index) {
   return Container(
     decoration: BoxDecoration(
-      color: AppColors.white,
+      color: controller.listProducts[index].isEdited.value
+          ? AppColors.dsPrimaryBlueBlue.withOpacity(0.1)
+          : AppColors.white,
       borderRadius: BorderRadius.circular(AppDimens.radius12),
-      border: Border.all(color: AppColors.colorBasicGrey3),
+      border: Border.all(
+        color: AppColors.colorBasicGrey3,
+      ),
     ),
     child: Row(
       children: [
@@ -106,9 +110,9 @@ Widget _buildInforProduct(HomeCtrl controller, int index) {
       _buildText(
         controller.listProducts[index].sku,
       ),
-      // _buildText(
-      //   controller.listProducts[index].color,
-      // ),
+      _buildText(
+        controller.listProducts[index].textColor,
+      ),
     ],
   );
 }
