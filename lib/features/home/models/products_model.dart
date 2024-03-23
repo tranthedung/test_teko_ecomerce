@@ -8,16 +8,16 @@ class ProductsModel {
     this.sku,
     this.image,
     this.color,
-    this.textColor,
+    this.productColor,
   });
 
-   int? id;
-   String? errorDescription;
-   String? name;
-   String? sku;
-   String? image;
-   int? color;
-   String? textColor;
+  int? id;
+  String? errorDescription;
+  String? name;
+  String? sku;
+  String? image;
+  int? color;
+  String? productColor;
 
   final RxBool isEdited = false.obs;
 

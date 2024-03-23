@@ -44,6 +44,11 @@ Widget _buildBottomSheetEdit(
                     textEditingController: controller.skuController,
                     textValue: controller.sku.value,
                   ),
+                  _buildInputField(
+                    label: "Color",
+                    textEditingController: controller.colorController,
+                    textValue: controller.color.value,
+                  ),
                 ],
               ),
             ),

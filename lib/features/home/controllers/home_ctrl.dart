@@ -48,7 +48,7 @@ class HomeCtrl extends BaseRefreshGetxController {
   Future<void> getProducts() async {
     listProducts.value = await homeRepository.getProducts();
     for (var item in listProducts) {
-      item.textColor = convertColor(item.color);
+      item.productColor = convertColor(item.color);
     }
   }
 
@@ -77,6 +77,7 @@ class HomeCtrl extends BaseRefreshGetxController {
   ) {
     nameController.text = item.name ?? "";
     skuController.text = item.sku ?? "";
+    colorController.text = item.productColor ?? "";
   }
 
   void updateProduct(int index) {
@@ -84,11 +85,12 @@ class HomeCtrl extends BaseRefreshGetxController {
       final ProductsModel item = listProducts[index];
       ProductsModel itemEdit = ProductsModel(
         id: item.id,
+        errorDescription: item.errorDescription,
         name: nameController.text,
         sku: skuController.text,
         color: item.color,
-        errorDescription: item.errorDescription,
         image: item.image,
+        productColor: colorController.text,
       )..isEdited.value = true;
       listProducts[index] = itemEdit;
       Get.back();

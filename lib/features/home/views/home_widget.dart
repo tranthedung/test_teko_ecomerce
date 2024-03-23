@@ -111,7 +111,7 @@ Widget _buildInforProduct(HomeCtrl controller, int index) {
         controller.listProducts[index].sku,
       ),
       _buildText(
-        controller.listProducts[index].textColor,
+        controller.listProducts[index].productColor,
       ),
     ],
   );
