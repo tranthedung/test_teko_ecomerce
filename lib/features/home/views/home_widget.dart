@@ -4,25 +4,25 @@ Widget _buildBody(HomeCtrl controller) {
   return Column(
     children: [
       _buildProducts(controller),
-      Row(
-        children: [
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text("Submit"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.colorsOrange,
-                elevation: 0,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(AppDimens.radius8),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+      // Row(
+      //   children: [
+      //     Expanded(
+      //       child: ElevatedButton(
+      //         onPressed: () {},
+      //         child: Text("Submit"),
+      //         style: ElevatedButton.styleFrom(
+      //           backgroundColor: AppColors.colorsOrange,
+      //           elevation: 0,
+      //           shape: const RoundedRectangleBorder(
+      //             borderRadius: BorderRadius.all(
+      //               Radius.circular(AppDimens.radius8),
+      //             ),
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     ],
   );
 }
@@ -75,7 +75,7 @@ Widget _buildProductItem(HomeCtrl controller, int index) {
                   ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,6 +94,24 @@ Widget _buildProductItem(HomeCtrl controller, int index) {
               ],
             ).paddingAll(AppDimens.paddingVerySmall),
           ),
+          Expanded(
+            flex: 1,
+            child: IconButton(
+              onPressed: () {
+                Get.bottomSheet(
+                  isScrollControlled: true,
+                  UtilWidget.baseBottomSheet(
+                    title: "Chỉnh sửa sản phẩm",
+                    body: _buildBottomSheetEdit(controller, index),
+                    backgroundColor: AppColors.colorLightAccent,
+                    noHeader: false,
+                    height: Get.height * 0.8,
+                  ),
+                );
+              },
+              icon: Icon(Icons.edit),
+            ),
+          )
         ],
       );
     }),
@@ -107,5 +125,46 @@ Widget _buildText(String? content) {
       fontSize: AppDimens.sizeTextMediumTb,
       // fontFamily: GoogleFonts.nunito().fontFamily,
     ),
+  );
+}
+
+Widget _buildBottomSheetEdit(
+  HomeCtrl controller,
+  int index,
+) {
+  return Column(
+    children: [
+      Expanded(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              controller.listProducts[index].image == null ||
+                      controller.listProducts[index].image == ""
+                  ? Container(
+                      color: AppColors.colorBasicGrey3,
+                      child: const Center(
+                        child: Text(
+                          "No Image",
+                          style: TextStyle(
+                            fontSize: AppDimens.sizeTextMediumTb,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Image.network(
+                      controller.listProducts[index].image ?? "",
+                      fit: BoxFit.cover,
+                    ),
+            ],
+          ),
+        ),
+      ),
+      BaseElevatedButton(
+        "Cập nhật",
+        () {},
+        backgroundColor: AppColors.lightPrimaryColor,
+        textColor: AppColors.white,
+      )
+    ],
   );
 }
