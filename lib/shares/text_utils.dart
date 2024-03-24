@@ -11,7 +11,6 @@ import 'package:google_fonts/google_fonts.dart';
 /// body - [FontWeight.normal] = w400
 /// title - [FontWeight.bold] = w700
 
-// Có thể bổ sung
 enum StyleEnum {
   bodyVerySmall,
   bodySmall,
@@ -108,7 +107,6 @@ class TextUtils extends StatelessWidget {
             fontWeight: FontWeight.bold,
           );
           break;
-        // Có thể bổ sung cho case mới
       }
     }
     return Text(

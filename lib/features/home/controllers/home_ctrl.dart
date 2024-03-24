@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:ecomerce/base_utils/base_repository/base_request.dart';
 import 'package:ecomerce/base_utils/controller_base/base_refresh_controller.dart';
 import 'package:ecomerce/features/home/models/models_src.dart';
@@ -55,15 +53,14 @@ class HomeCtrl extends BaseRefreshGetxController {
   /// Call api getColors to get list colors.
   Future<void> getColors() async {
     final listColors = await homeRepository.getColors();
-    listColors.forEach(
-      (element) {
-        if (element.id != null && element.name != null) {
-          mapColors[element.id!] = element.name!;
-        }
-      },
-    );
+    for (var element in listColors) {
+      if (element.id != null && element.name != null) {
+        mapColors[element.id!] = element.name!;
+      }
+    }
   }
 
+  ///Convert color to color name.
   String? convertColor(int? id) {
     if (id == null) {
       return null;
@@ -72,6 +69,7 @@ class HomeCtrl extends BaseRefreshGetxController {
     }
   }
 
+  ///Fill data to form when user click edit button.
   void getDataProduct(
     ProductsModel item,
   ) {
@@ -80,6 +78,7 @@ class HomeCtrl extends BaseRefreshGetxController {
     colorController.text = item.productColor ?? "";
   }
 
+  /// Update product in the bottom sheet.
   void updateProduct(int index) {
     if (formKey.currentState!.validate()) {
       final ProductsModel item = listProducts[index];

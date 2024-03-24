@@ -6,6 +6,7 @@ class AppDimens {
   static const double sizeTextMediumTb = 16;
   static const double sizeTextMedium = 18;
   static const double sizeTextLarge = 20;
+  static const double sizeTextVeryLarge = 24;
 
   /// Padding
   static const double defaultPadding = 16.0;
@@ -32,6 +33,7 @@ class AppDimens {
   static const double iconLoginWidth = 77;
   static const double iconLogoWidth = 190;
   static const double imagePicture = 300;
+  static const double iconError = 5;
 
   static const double btnSmall = 20;
 

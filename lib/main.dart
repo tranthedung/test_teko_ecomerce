@@ -1,9 +1,7 @@
 import 'package:ecomerce/assets/strings.dart';
-import 'package:ecomerce/core/values/colors.dart';
 import 'package:ecomerce/routes/pages.dart';
 import 'package:ecomerce/routes/routes.dart';
 import 'package:ecomerce/shares/keyboard.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -49,19 +47,13 @@ class _Application extends State<Application> {
                   MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
               child: child ?? Container()),
         ),
-        // localizationsDelegates: const [
-        //   GlobalCupertinoLocalizations.delegate,
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        //   DefaultCupertinoLocalizations.delegate
-        // ],
         supportedLocales: const [
           Locale('vi', ''),
           Locale('en', ''),
         ],
         title: AppStr.appName,
-        //   theme: getThemeByAppTheme(false)
-        //       .copyWith(unselectedWidgetColor: AppColors.colorMain),
+        // theme: getThemeByAppTheme(false)
+        //     .copyWith(unselectedWidgetColor: AppColors.colorMain),
       ),
     );
   }

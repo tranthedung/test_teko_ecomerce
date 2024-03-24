@@ -4,12 +4,7 @@ Widget _buildBody(HomeCtrl controller) {
   return Column(
     children: [
       _buildProducts(controller),
-      BaseElevatedButton(
-        "Submit",
-        () {},
-        backgroundColor: AppColors.lightPrimaryColor,
-        textColor: AppColors.white,
-      ).paddingAll(AppDimens.paddingVerySmall),
+      _buildButtonSubmit(controller).paddingAll(AppDimens.paddingVerySmall),
     ],
   );
 }
@@ -39,6 +34,19 @@ Widget _buildProducts(HomeCtrl controller) {
   );
 }
 
+Widget _buildButtonSubmit(HomeCtrl controller) {
+  return BaseElevatedButton(
+    HomeStr.submitButton,
+    () {
+      Get.dialog(
+        _buildPopupProductsUpdated(controller),
+      );
+    },
+    backgroundColor: AppColors.lightPrimaryColor,
+    textColor: AppColors.white,
+  );
+}
+
 Widget _buildProductItem(HomeCtrl controller, int index) {
   return Container(
     decoration: BoxDecoration(
@@ -53,20 +61,10 @@ Widget _buildProductItem(HomeCtrl controller, int index) {
     child: Row(
       children: [
         Expanded(
-          flex: 1,
+          flex: 2,
           child: controller.listProducts[index].image == null ||
                   controller.listProducts[index].image == ""
-              ? Container(
-                  color: AppColors.colorBasicGrey3,
-                  child: const Center(
-                    child: Text(
-                      "No Image",
-                      style: TextStyle(
-                        fontSize: AppDimens.sizeTextMediumTb,
-                      ),
-                    ),
-                  ),
-                )
+              ? _buildImageProductEmpty()
               : _buildImageProduct(controller, index),
         ),
         Expanded(
@@ -83,17 +81,18 @@ Widget _buildProductItem(HomeCtrl controller, int index) {
   ).paddingAll(AppDimens.paddingSmallest);
 }
 
+Widget _buildImageProductEmpty() {
+  return SvgPicture.asset(
+    height: AppDimens.iconError,
+    width: AppDimens.iconError,
+    ImageAsset.iconError,
+  );
+}
+
 Widget _buildImageProduct(HomeCtrl controller, int index) {
   return Image.network(
     controller.listProducts[index].image ?? "",
     fit: BoxFit.cover,
-  );
-}
-
-Widget _buildText(String? content) {
-  return TextUtils(
-    text: content ?? "",
-    availableStyle: StyleEnum.bodyMedium,
   );
 }
 
@@ -114,6 +113,14 @@ Widget _buildInforProduct(HomeCtrl controller, int index) {
         controller.listProducts[index].productColor,
       ),
     ],
+  );
+}
+
+Widget _buildText(String? content) {
+  return TextUtils(
+    text: content ?? "",
+    availableStyle: StyleEnum.bodyMedium,
+    maxLine: 2,
   );
 }
 

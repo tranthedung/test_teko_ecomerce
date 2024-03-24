@@ -18,7 +18,7 @@ class UtilWidget {
         color: colorIcon,
       );
 
-  /// Loading cho child
+  /// base to show loading.
   static Widget baseShowLoadingChild({
     required WidgetCallback child,
     required bool isShowLoading,
@@ -192,12 +192,7 @@ class UtilWidget {
                   size: AppDimens.iconMedium,
                 ),
               ),
-            )
-      /*BackButton(
-              color: backButtonColor ?? AppColors.textColorDefault,
-              onPressed: funcLeading,
-            )*/
-      ,
+            ),
       flexibleSpace: isColorGradient
           ? Container(
               decoration: BoxDecoration(
@@ -258,7 +253,7 @@ class UtilWidget {
     );
   }
 
-  /// Sử dụng để tránh trường hợp click liên tiếp khi thực hiện function
+  ///Base avoid spam click.
   static VoidCallback? baseOnTap(VoidCallback? onTap) {
     return (() {
       DateTime now = DateTime.now();

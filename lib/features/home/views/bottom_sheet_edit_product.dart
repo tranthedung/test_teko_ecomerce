@@ -6,57 +6,13 @@ Widget _buildBottomSheetEdit(
 ) {
   return Column(
     children: [
-      Obx(
-        () => Expanded(
-          child: SingleChildScrollView(
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                children: [
-                  controller.listProducts[index].image == null ||
-                          controller.listProducts[index].image == ""
-                      ? Container(
-                          color: AppColors.colorBasicGrey3,
-                          child: const Center(
-                            child: Text(
-                              "No Image",
-                              style: TextStyle(
-                                fontSize: AppDimens.sizeTextMediumTb,
-                              ),
-                            ),
-                          ),
-                        )
-                      : SizedBox(
-                          height: AppDimens.imagePicture,
-                          width: AppDimens.imagePicture,
-                          child: Image.network(
-                            controller.listProducts[index].image ?? "",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                  _buildInputField(
-                    label: "Name",
-                    textEditingController: controller.nameController,
-                    textValue: controller.name.value,
-                  ),
-                  _buildInputField(
-                    label: "Sku",
-                    textEditingController: controller.skuController,
-                    textValue: controller.sku.value,
-                  ),
-                  _buildInputField(
-                    label: "Color",
-                    textEditingController: controller.colorController,
-                    textValue: controller.color.value,
-                  ),
-                ],
-              ),
-            ),
-          ),
+      Expanded(
+        child: SingleChildScrollView(
+          child: _buildFormUpdateProduct(controller, index),
         ),
       ),
       BaseElevatedButton(
-        "Update",
+        HomeStr.updateButton,
         () {
           controller.updateProduct(index);
         },
@@ -64,6 +20,44 @@ Widget _buildBottomSheetEdit(
         textColor: AppColors.white,
       ),
     ],
+  );
+}
+
+Widget _buildFormUpdateProduct(HomeCtrl controller, int index) {
+  return Form(
+    key: controller.formKey,
+    child: Obx(
+      () => Column(
+        children: [
+          controller.listProducts[index].image == null ||
+                  controller.listProducts[index].image == ""
+              ? _buildImageProductEmpty()
+              : SizedBox(
+                  height: AppDimens.imagePicture,
+                  width: AppDimens.imagePicture,
+                  child: Image.network(
+                    controller.listProducts[index].image ?? "",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+          _buildInputField(
+            label: HomeStr.name,
+            textEditingController: controller.nameController,
+            textValue: controller.name.value,
+          ),
+          _buildInputField(
+            label: HomeStr.sku,
+            textEditingController: controller.skuController,
+            textValue: controller.sku.value,
+          ),
+          _buildInputField(
+            label: HomeStr.color,
+            textEditingController: controller.colorController,
+            textValue: controller.color.value,
+          ),
+        ],
+      ),
+    ),
   );
 }
 
