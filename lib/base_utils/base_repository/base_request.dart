@@ -51,11 +51,6 @@ class BaseRequest {
 
   late Function(Object error) onErrorCallBack;
 
-  /// [isQueryParametersPost]: `true`: phương thức post gửi params, mặc định = `false`
-  ///
-  /// [dioOptions]: option của Dio() sử dụng khi gọi api có option riêng
-  ///
-  /// [functionError]: chạy function riêng khi request xảy ra Exception (mặc định sử dụng [showDialogError])
   Future<dynamic> sendRequest(
     String action,
     String requestMethod, {
@@ -85,7 +80,6 @@ class BaseRequest {
             })
         : Options(
             headers: headers,
-            //method: requestMethod.toString(),
             responseType: ResponseType.json,
           );
     CancelToken cancelToken = CancelToken();

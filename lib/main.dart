@@ -52,8 +52,6 @@ class _Application extends State<Application> {
           Locale('en', ''),
         ],
         title: AppStr.appName,
-        // theme: getThemeByAppTheme(false)
-        //     .copyWith(unselectedWidgetColor: AppColors.colorMain),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Theme mặc định
+  // Theme default
   static const Color colorLightAccent = Color(0xFFf5f5f5);
 
   static const Color white = Colors.white;

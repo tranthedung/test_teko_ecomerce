@@ -7,14 +7,14 @@ abstract class BaseRefreshGetxController extends BaseGetxController {
   ScrollController scrollControllerUpToTop = ScrollController();
   RxBool showBackToTopButton = false.obs;
 
-  /// Controller của smart refresh.
+  /// Controller of smart refresh.
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
 
-  /// Hàm load more.
+  /// load more.
   Future<void> onLoadMore();
 
-  /// Hàm refresh page.
+  /// refresh page.
   Future<void> onRefresh();
 
   @override

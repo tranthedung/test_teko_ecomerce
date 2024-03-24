@@ -24,8 +24,6 @@ class AppDimens {
   static const double radius20 = 20.0;
 
   /// Icon size
-  static const double sizeAvatar = 70.0;
-
   static const double iconVerySmall = 24;
   static const double iconSmall = 28;
   static const double iconMedium = 32;
@@ -34,8 +32,6 @@ class AppDimens {
   static const double iconLogoWidth = 190;
   static const double imagePicture = 200;
   static const double iconError = 50;
-
   static const double btnSmall = 20;
-
   static const double btnDefault = 40;
 }
