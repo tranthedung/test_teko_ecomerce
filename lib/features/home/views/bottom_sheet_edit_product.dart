@@ -1,5 +1,6 @@
 part of 'home_page.dart';
 
+///Bottom sheet to edit product.
 Widget _buildBottomSheetEdit(
   HomeCtrl controller,
   int index,
@@ -64,6 +65,7 @@ Widget _buildFormUpdateProduct(HomeCtrl controller, int index) {
   );
 }
 
+/// Build Input field to enter product information.
 Widget _buildInputField({
   required String label,
   required TextEditingController textEditingController,

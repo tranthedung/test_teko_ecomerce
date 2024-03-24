@@ -26,8 +26,10 @@ class HomePage extends BaseGetWidget<HomeCtrl> {
   Widget buildWidgets(BuildContext context) {
     return Scaffold(
       appBar: UtilWidget.buildAppBar(
-        "Home",
+        HomeStr.titleScreen,
         backgroundColor: AppColors.colorLightAccent,
+        isColorGradient: false,
+        centerTitle: false,
         leading: false,
       ),
       backgroundColor: AppColors.colorLightAccent,

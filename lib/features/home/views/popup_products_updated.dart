@@ -1,5 +1,6 @@
 part of 'home_page.dart';
 
+/// Popup to show products updated.
 Widget _buildPopupProductsUpdated(HomeCtrl controller) {
   return Dialog(
     shape: RoundedRectangleBorder(
@@ -19,39 +20,31 @@ Widget _buildPopupProductsUpdated(HomeCtrl controller) {
             availableStyle: StyleEnum.titleLarge,
           ),
           UtilWidget.sizedBox5,
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.colorWhite,
-                    borderRadius: BorderRadius.circular(
-                      AppDimens.radius12,
-                    ),
-                  ),
-                  child: _buildProductUpdatedItem(controller, index),
-                ).paddingSymmetric(vertical: AppDimens.paddingVerySmall);
-              },
-              itemCount: controller.listProducts.length,
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: const TextUtils(
-                text: HomeStr.okButton,
-                color: AppColors.lightPrimaryColor,
-                size: AppDimens.sizeTextLarge,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+          _buildListProductsEdited(controller),
+          _buildButonOk(),
         ],
       ),
     ).paddingAll(AppDimens.paddingVerySmall),
+  );
+}
+
+/// List products updated.
+Widget _buildListProductsEdited(HomeCtrl controller) {
+  return Expanded(
+    child: ListView.builder(
+      itemBuilder: (context, index) {
+        return Container(
+          decoration: BoxDecoration(
+            color: AppColors.colorWhite,
+            borderRadius: BorderRadius.circular(
+              AppDimens.radius12,
+            ),
+          ),
+          child: _buildProductUpdatedItem(controller, index),
+        ).paddingSymmetric(vertical: AppDimens.paddingVerySmall);
+      },
+      itemCount: controller.listProducts.length,
+    ),
   );
 }
 
@@ -69,5 +62,23 @@ Widget _buildProductUpdatedItem(HomeCtrl controller, int index) {
         child: _buildInforProduct(controller, index),
       ),
     ],
+  );
+}
+
+/// Button ok in the bottom sheet edit product.
+Widget _buildButonOk() {
+  return Align(
+    alignment: Alignment.centerRight,
+    child: TextButton(
+      onPressed: () {
+        Get.back();
+      },
+      child: const TextUtils(
+        text: HomeStr.okButton,
+        color: AppColors.lightPrimaryColor,
+        size: AppDimens.sizeTextLarge,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
   );
 }

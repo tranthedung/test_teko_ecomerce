@@ -87,6 +87,7 @@ Widget _buildProductItem(HomeCtrl controller, int index) {
   ).paddingAll(AppDimens.paddingSmallest);
 }
 
+///Show error product image.
 Widget _buildImageProductEmpty() {
   return SvgPicture.asset(
     height: AppDimens.iconError,
@@ -95,6 +96,7 @@ Widget _buildImageProductEmpty() {
   );
 }
 
+///Show product image.
 Widget _buildImageProduct(HomeCtrl controller, int index) {
   return Image.network(
     controller.listProducts[index].image ?? "",
@@ -102,6 +104,7 @@ Widget _buildImageProduct(HomeCtrl controller, int index) {
   );
 }
 
+///Show product information.
 Widget _buildInforProduct(HomeCtrl controller, int index) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,6 +133,7 @@ Widget _buildText(String? content) {
   );
 }
 
+///Show edit button.
 Widget _buildEditProduct(HomeCtrl controller, int index) {
   return IconButton(
     onPressed: () {

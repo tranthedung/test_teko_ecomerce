@@ -9,4 +9,5 @@ class HomeStr {
   static const String emptyList = "Empty list products";
   static const String editProduct = "Edit product";
   static const String pleaseEnterInfor = "Please enter complete information";
+  static const String titleScreen = "Products";
 }
