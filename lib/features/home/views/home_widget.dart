@@ -25,13 +25,13 @@ Widget _buildProducts(HomeCtrl controller) {
             child: UtilWidget.buildSmartRefresher(
               refreshController: controller.refreshController,
               enablePullUp: true,
-              // onLoadMore: controller.onLoadMore(),
               onRefresh: controller.onRefresh,
+              onLoadMore: controller.onLoadMore,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return _buildProductItem(controller, index);
                 },
-                itemCount: controller.listProducts.length,
+                itemCount: controller.numberItemPerpage.value,
               ),
             ),
           ),

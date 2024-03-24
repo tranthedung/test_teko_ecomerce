@@ -21,6 +21,7 @@ class HomeCtrl extends BaseRefreshGetxController {
 
   final formKey = GlobalKey<FormState>();
 
+  RxInt numberItemPerpage = 10.obs;
   @override
   void onInit() async {
     Get.put(BaseRequest(), permanent: true);
@@ -31,13 +32,17 @@ class HomeCtrl extends BaseRefreshGetxController {
   }
 
   @override
-  Future<void> onLoadMore() {
-    // TODO: implement onLoadMore
-    throw UnimplementedError();
+  Future<void> onLoadMore() async {
+    numberItemPerpage.value += 10;
+    if (numberItemPerpage.value >= listProducts.length) {
+      numberItemPerpage.value = listProducts.length;
+    }
+    refreshController.loadComplete();
   }
 
   @override
   Future<void> onRefresh() async {
+    numberItemPerpage.value = 10;
     await getProducts();
     refreshController.refreshCompleted();
   }
