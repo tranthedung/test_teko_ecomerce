@@ -33,7 +33,7 @@ class AppDimens {
   static const double iconLoginWidth = 77;
   static const double iconLogoWidth = 190;
   static const double imagePicture = 300;
-  static const double iconError = 5;
+  static const double iconError = 50;
 
   static const double btnSmall = 20;
 

@@ -6,4 +6,7 @@ class HomeStr {
   static const String name = "Name";
   static const String sku = "Sku";
   static const String color = "Color";
+  static const String emptyList = "Empty list products";
+  static const String editProduct = "Edit product";
+  static const String pleaseEnterInfor = "Please enter complete information";
 }

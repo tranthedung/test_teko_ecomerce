@@ -9,12 +9,16 @@ Widget _buildBody(HomeCtrl controller) {
   );
 }
 
+/// Show list products.
 Widget _buildProducts(HomeCtrl controller) {
   return Obx(
     () => controller.listProducts.isEmpty
         ? const Expanded(
             child: Center(
-              child: Text("Danh sách trống"),
+              child: TextUtils(
+                text: HomeStr.emptyList,
+                availableStyle: StyleEnum.titleLarge,
+              ),
             ),
           )
         : Expanded(
@@ -34,6 +38,7 @@ Widget _buildProducts(HomeCtrl controller) {
   );
 }
 
+/// Show popup when submit button is clicked.
 Widget _buildButtonSubmit(HomeCtrl controller) {
   return BaseElevatedButton(
     HomeStr.submitButton,
@@ -47,6 +52,7 @@ Widget _buildButtonSubmit(HomeCtrl controller) {
   );
 }
 
+/// Show product.
 Widget _buildProductItem(HomeCtrl controller, int index) {
   return Container(
     decoration: BoxDecoration(
@@ -131,7 +137,7 @@ Widget _buildEditProduct(HomeCtrl controller, int index) {
       Get.bottomSheet(
         isScrollControlled: true,
         UtilWidget.baseBottomSheet(
-          title: "Chỉnh sửa sản phẩm",
+          title: HomeStr.editProduct,
           body: _buildBottomSheetEdit(controller, index),
           backgroundColor: AppColors.colorLightAccent,
           noHeader: false,

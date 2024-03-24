@@ -7,7 +7,7 @@ Widget _buildPopupProductsUpdated(HomeCtrl controller) {
         AppDimens.radius12,
       ),
     ),
-    backgroundColor: AppColors.white,
+    backgroundColor: AppColors.colorLightAccent,
     child: SizedBox(
       width: Get.width,
       height: Get.height * 0.65,
@@ -22,7 +22,15 @@ Widget _buildPopupProductsUpdated(HomeCtrl controller) {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
-                return _buildProductUpdatedItem(controller, index);
+                return Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.colorWhite,
+                    borderRadius: BorderRadius.circular(
+                      AppDimens.radius12,
+                    ),
+                  ),
+                  child: _buildProductUpdatedItem(controller, index),
+                ).paddingSymmetric(vertical: AppDimens.paddingVerySmall);
               },
               itemCount: controller.listProducts.length,
             ),

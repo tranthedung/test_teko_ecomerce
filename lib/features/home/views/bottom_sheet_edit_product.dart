@@ -23,37 +23,40 @@ Widget _buildBottomSheetEdit(
   );
 }
 
+/// Form to update product.
 Widget _buildFormUpdateProduct(HomeCtrl controller, int index) {
   return Form(
     key: controller.formKey,
     child: Obx(
       () => Column(
         children: [
-          controller.listProducts[index].image == null ||
-                  controller.listProducts[index].image == ""
-              ? _buildImageProductEmpty()
-              : SizedBox(
-                  height: AppDimens.imagePicture,
-                  width: AppDimens.imagePicture,
-                  child: Image.network(
+          SizedBox(
+            height: AppDimens.imagePicture,
+            width: AppDimens.imagePicture,
+            child: controller.listProducts[index].image == null ||
+                    controller.listProducts[index].image == ""
+                ? _buildImageProductEmpty()
+                : Image.network(
                     controller.listProducts[index].image ?? "",
-                    fit: BoxFit.cover,
                   ),
-                ),
+          ),
           _buildInputField(
             label: HomeStr.name,
             textEditingController: controller.nameController,
             textValue: controller.name.value,
+            maxlenght: 50,
           ),
           _buildInputField(
             label: HomeStr.sku,
             textEditingController: controller.skuController,
             textValue: controller.sku.value,
+            maxlenght: 20,
           ),
           _buildInputField(
             label: HomeStr.color,
             textEditingController: controller.colorController,
             textValue: controller.color.value,
+            validate: false,
           ),
         ],
       ),
@@ -66,6 +69,8 @@ Widget _buildInputField({
   required TextEditingController textEditingController,
   required String textValue,
   String? hintText,
+  bool validate = true,
+  int? maxlenght,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,6 +84,7 @@ Widget _buildInputField({
       UtilWidget.sizedBox5,
       BuildInputText(
         InputTextModel(
+          maxLengthInputForm: maxlenght,
           controller: textEditingController,
           textColor: AppColors.colorBasicBlack,
           hintText: hintText,
@@ -90,8 +96,8 @@ Widget _buildInputField({
             textValue = value;
           },
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Vui lòng nhập đầy đủ thông tin";
+            if ((value == null || value.isEmpty) && validate) {
+              return HomeStr.pleaseEnterInfor;
             }
             return null;
           },
