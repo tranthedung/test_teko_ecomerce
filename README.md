@@ -1,16 +1,8 @@
 # ecomerce
-
 A new Flutter project.
-
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run a Flutter project with version 3.13.7:
+- Install Flutter v3.13.7 and corresponding Dart.
+- Clone the Flutter project from the source code.
+- Open the terminal in the project directory and run flutter pub get to install dependencies.
+- Use the flutter run command to launch the application on a device or emulator.
